@@ -1,5 +1,6 @@
 import type { TooltipComponentFormatterCallbackParams } from "echarts";
 import { RawDataItem, SeriesName } from "../data/data";
+import { CSSProperties } from "react";
 
 export type TooltipParams = TooltipComponentFormatterCallbackParams[];
 
@@ -23,3 +24,18 @@ export const COLORS: Record<SeriesName, string> = {
   "Вне программ ЦП": "#22C38E",
   "Вне программ ИТ": "#00724C",
 };
+
+export interface IOnEvents {
+  type: string;
+  func: (params: any) => void;
+}
+
+export interface ReactEChartsProps {
+  option: any;
+  onEvents?: IOnEvents;
+  style?: CSSProperties;
+  settings?: echarts.SetOptionOpts;
+  loading?: boolean;
+  theme?: 'light' | 'dark';
+  forceResize?: boolean;
+}

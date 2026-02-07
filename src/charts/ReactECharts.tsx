@@ -1,23 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
-import type { CSSProperties } from 'react';
 
 import { forceResizeCharts } from './utilsForCharts';
-
-interface IOnEvents {
-  type: string;
-  func: (params: any) => void;
-}
-
-export interface ReactEChartsProps {
-  option: any;
-  onEvents?: IOnEvents;
-  style?: CSSProperties;
-  settings?: echarts.SetOptionOpts;
-  loading?: boolean;
-  theme?: 'light' | 'dark';
-  forceResize?: boolean;
-}
+import { ReactEChartsProps } from '../types/types';
 
 export function ReactECharts({
   option,
@@ -27,7 +12,7 @@ export function ReactECharts({
   loading,
   theme,
   forceResize = true,
-}: ReactEChartsProps): React.ReactElement { // Изменили JSX.Element на React.ReactElement
+}: ReactEChartsProps): React.ReactElement { 
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstanceRef = useRef<echarts.ECharts | null>(null);
 

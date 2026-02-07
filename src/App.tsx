@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import { data, SeriesName } from "./data/data";
-// import { buildStackedBarOption } from './utils/buildStackedBarOption';
 import { ReactECharts } from "./charts/ReactECharts";
 import { buildStackedBarOption } from "./utils/chart/buildStackedBarOption";
 import { COLORS } from "./types/types";
@@ -12,15 +11,10 @@ function App() {
   const [chartKey, setChartKey] = useState(0); // Добавляем key для принудительного ререндера
 
   const toggle = (name: SeriesName) => {
-    // console.log('Toggle:', name);
 
     setActive((prev) => {
       const newActive = prev.includes(name) ? prev.filter((i) => i !== name) : [...prev, name];
-      // console.log('New active:', newActive);
-
-      // Принудительно обновляем key чтобы пересоздать компонент графика
       setChartKey((prev) => prev + 1);
-
       return newActive;
     });
   };
@@ -33,7 +27,6 @@ function App() {
       <p style={{ fontSize: "1.2rem" }}>Сумма и процентное соотношение проектов, находящихся в программах и вне программ</p>
 
       <div style={{ height: 420 }}>
-        {/* Добавляем key чтобы пересоздавать компонент */}
         <ReactECharts key={chartKey} option={option} />
       </div>
 
@@ -58,7 +51,6 @@ function App() {
             }}
             onClick={() => toggle(item)}
           >
-            {/* Просто цветной символ ● */}
             <span
               style={{
                 color: active.includes(item) ? COLORS[item] : "#ccc",
